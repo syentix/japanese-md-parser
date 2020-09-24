@@ -23,6 +23,10 @@ Now you're all set :)
 2. As soon as you finished writing your file use `j-md-parser <files>` to create the parsed versions of your file
 3. Your parsed copies of the original text will be named:  `<filename>(parsed).md`
 
+## Available Flags
+
+* `--romaji` This will add the romaji next to the parsed hiragana
+
 ### Example
 
 Our file called `Example-File.md`:
@@ -34,7 +38,7 @@ Our file called `Example-File.md`:
 In our console:
 
 ```bash
-j-md-parser Example-File.md
+j-md-parser Example-File.md --romaji
 ```
 
 This creates a file called `Example-File(parsed).md`
