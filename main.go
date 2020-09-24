@@ -17,19 +17,30 @@ var reg = regexp.MustCompile("/j\"[a-zA-Z ]+\"")
 
 func main() {
 
-	files := os.Args[1:]
+	args := os.Args[1:]
 
-	for _, file := range files {
+	romaji := false
+
+	for i, arg := range args {
+		if arg == "--romaji" {
+			romaji = true
+			args[i] = args[len(args)-1] // Copy last element to index i.
+			args[len(args)-1] = ""      // Erase last element (write zero value).
+			args = args[:len(args)-1]   // Truncate slice.
+		}
+	}
+
+	for _, file := range args {
 		ab, err := filepath.Abs(file)
 		if err != nil {
 			panic(err)
 		}
-		parseFile(ab)
+		parseFile(ab, romaji)
 	}
 
 }
 
-func parseFile(fileName string) {
+func parseFile(fileName string, romaji bool) {
 	// Read file
 	file, err := ioutil.ReadFile(fileName)
 	if err != nil {
@@ -53,7 +64,11 @@ func parseFile(fileName string) {
 		word := kana.RomajiToHiragana(string(file[start:end]))
 
 		// Replacing placeholder with parsed text with form: <Hiragana>(<Romaji>)
-		word = word[3:len(word)-1] + "(" + string(file[start+3:end-1]) + ")"
+		if romaji == true {
+			word = word[3:len(word)-1] + "(" + string(file[start+3:end-1]) + ")"
+		} else {
+			word = word[3 : len(word)-1]
+		}
 		file = bytes.Replace(file, file[start:end], []byte(word), len([]byte(word)))
 		i++
 	}
