@@ -5,10 +5,22 @@ So i made a parser that would look for matches in a given md file and would conv
 
 ----
 
+## Installing
+
+Make sure to have go installed correctly and your $GOBIN is set.
+
+```bash
+git clone https://github.com/syentix/japanese-md-parser.git
+cd japanese-md-parser/
+go install
+```
+
+Now you're all set :)
+
 ## How to
 
 1. While writing your markdown use `/j"<romaji-word>"` to mark a to mark an unparsed word
-2. As soon as you finished writing your file use `./j-md-parser <files>` to create the parsed versions of your file
+2. As soon as you finished writing your file use `j-md-parser <files>` to create the parsed versions of your file
 3. Your parsed copies of the original text will be named:  `<filename>(parsed).md`
 
 ### Example
@@ -22,7 +34,7 @@ Our file called `Example-File.md`:
 In our console:
 
 ```bash
-./j-md-parser Example-File.md
+j-md-parser Example-File.md
 ```
 
 This creates a file called `Example-File(parsed).md`
