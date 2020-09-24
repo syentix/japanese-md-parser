@@ -10,4 +10,5 @@ It successfully parses a hardcoded file to Hiragana.
 ## Todo
 
 [X] Take in filename
+br
 [ ] Also parse with extra args in the text (Add Katakana support)
