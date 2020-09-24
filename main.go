@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"regexp"
+	"strings"
 
 	"github.com/gojp/kana"
 )
@@ -15,13 +17,24 @@ var reg = regexp.MustCompile("/j\"[a-zA-Z ]+\"")
 
 func main() {
 
-	// TODO: Dehardcode this bit
-	fileName := "./examples/Lesson-C"
+	files := os.Args[1:]
 
+	for _, file := range files {
+		ab, err := filepath.Abs(file)
+		if err != nil {
+			panic(err)
+		}
+		parseFile(ab)
+	}
+
+}
+
+func parseFile(fileName string) {
 	// Read file
-	file, err := ioutil.ReadFile(fileName + ".md")
+	file, err := ioutil.ReadFile(fileName)
 	if err != nil {
-		panic(err)
+		fmt.Println("File not found.")
+		return
 	}
 
 	// How many matches are in the Text.
@@ -45,7 +58,9 @@ func main() {
 		i++
 	}
 
-	newFile, err := os.Create(fileName + "(parsed).md")
+	newFileName := strings.Split(fileName, ".")[0] + "(parsed).md"
+	newFile, err := os.Create(newFileName)
+
 	if err != nil {
 		panic(err)
 	}
@@ -55,5 +70,5 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("File successfully parsed and can be found here:", fileName+"(parsed).md")
+	fmt.Println("File successfully parsed and can be found here:", newFileName)
 }
