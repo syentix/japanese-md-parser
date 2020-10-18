@@ -1,7 +1,9 @@
 # Japanese Markdown Parser
 
 I was facing the problem while learning japanese, that I couldn't easily switch keyboards while writing md files.
-So i made a parser that would look for matches in a given md file and would convert the text in the match from romaji to hiragana. (Katakana coming later)
+So i made a parser that would look for matches in a given md file and would convert the text in the match from romaji to hiragana. 
+And I do know that this way of doing it, is definitely not even close to being 100% correct, but it was an interesting way to work around the trouble.
+(Katakana coming later)
 
 ----
 
