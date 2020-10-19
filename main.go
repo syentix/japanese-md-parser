@@ -73,7 +73,16 @@ func parseFile(fileName string, romaji bool) {
 		i++
 	}
 
-	newFileName := strings.Split(fileName, ".")[0] + "(parsed).md"
+	path := "parsed"
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		os.Mkdir(path, os.ModePerm)
+	}
+
+	if err := os.Chdir(path); err != nil {
+		panic(err)
+	}
+
+	newFileName := strings.Split(filepath.Base(fileName), ".")[0] + ".romanji.md"
 	newFile, err := os.Create(newFileName)
 
 	if err != nil {
@@ -85,5 +94,5 @@ func parseFile(fileName string, romaji bool) {
 		panic(err)
 	}
 
-	fmt.Println("File successfully parsed and can be found here:", newFileName)
+	fmt.Println("File successfully parsed and can be found here:", strings.Join([]string{path, newFileName}, "/"))
 }
