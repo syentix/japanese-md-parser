@@ -82,7 +82,7 @@ func parseFile(fileName string, romaji bool) {
 		panic(err)
 	}
 
-	newFileName := strings.Split(filepath.Base(fileName), ".")[0] + ".romanji.md"
+	newFileName := strings.Split(filepath.Base(fileName), ".")[0] + ".hiragana.md"
 	newFile, err := os.Create(newFileName)
 
 	if err != nil {
