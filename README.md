@@ -24,7 +24,7 @@ Now you're all set :)
 
 1. While writing your markdown use `/j"<romaji-word>"` to mark an unparsed word
 2. As soon as you finished writing your file use `j-md-parser <files>` to create the parsed versions of your file
-3. Your parsed copies of the original text will be named:  `<filename>(parsed).md`
+3. Your parsed copies of the original text will be named:  `<filename>.hiragana.md`
 
 ## Available Flags
 
@@ -44,9 +44,9 @@ In our console:
 j-md-parser Example-File.md --romaji
 ```
 
-This creates a file called `Example-File(parsed).md`
+This creates a file called `Example-File.hiragana.md`
 
-Our file called `Example-File(parsed).md`:
+Our file called `parsed/Example-File.hiragana.md`:
 
 ```md
 # ご(go) is great
